@@ -212,7 +212,7 @@ class LoginController extends BaseOidcController {
 			// ['essential' => true] means it's mandatory but it won't trigger an error if it's not there
 			// null means we want it
 			'id_token' => new \stdClass(),
-			'userinfo' => new \stdClass(),
+			// 'userinfo' => new \stdClass(),
 		];
 
 		$resolveNestedClaims = $this->providerService->getSetting($providerId, ProviderService::SETTING_RESOLVE_NESTED_AND_FALLBACK_CLAIMS_MAPPING, '0') === '1';
@@ -227,7 +227,7 @@ class LoginController extends BaseOidcController {
 			$groupsAttribute = $this->providerService->getSetting($providerId, ProviderService::SETTING_MAPPING_GROUPS, 'groups');
 			foreach ([$emailAttribute, $displaynameAttribute, $quotaAttribute, $groupsAttribute] as $claim) {
 				$claims['id_token']->{$claim} = null;
-				$claims['userinfo']->{$claim} = null;
+				// $claims['userinfo']->{$claim} = null;
 			}
 		} else {
 			// No default claim, we only set the claims if an attribute is mapped
